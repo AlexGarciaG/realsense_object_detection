@@ -1,0 +1,16 @@
+<launch>
+    <group >
+        <include file="$(find realsense2_camera)/launch/rs_camera.launch">
+            <arg name="device_type" value="d435"/>
+            <arg name="initial_reset" value="true"/>
+            <arg name="clip_distance" value="3"/>
+            <arg name="filters" value="disparity,spatial,decimation,hole_filling"/>
+        </include>
+    </group>
+    <node type="rviz" name="rviz" pkg="rviz" args="-d $(find realsense_object_detection)/rviz/rvizCheck.rviz"/>
+    <node type="rqt_reconfigure" name="rqt_reconfigure" pkg="rqt_reconfigure">
+        <param name="hole_filling" value="50" />
+
+    </node>
+
+</launch>
